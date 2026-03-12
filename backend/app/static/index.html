@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce RAG Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero">
+      <p class="eyebrow">Demo Store Assistant</p>
+      <h1>Ask the catalog what to buy.</h1>
+      <p class="hero-copy">
+        A simple frontend for the e-commerce RAG backend. Type a shopping need,
+        submit it, and inspect the grounded product matches.
+      </p>
+      <div class="sample-prompts">
+        <button class="sample-chip" data-query="I need wireless headphones for travel">Travel headphones</button>
+        <button class="sample-chip" data-query="Show me a cooling pillow for side sleepers">Cooling pillow</button>
+        <button class="sample-chip" data-query="I want a laptop backpack for work">Laptop backpack</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <form id="ask-form" class="ask-form">
+        <label for="query" class="label">Shopping question</label>
+        <textarea id="query" name="query" rows="4" placeholder="Example: I want an espresso machine for small kitchens"></textarea>
+
+        <div class="form-row">
+          <label for="top-k" class="label compact">Top matches</label>
+          <select id="top-k" name="top_k">
+            <option value="">Default</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <button type="submit" id="submit-btn">Ask RAG</button>
+        </div>
+      </form>
+
+      <div id="status" class="status" aria-live="polite"></div>
+
+      <section class="result-grid">
+        <article class="result-card answer-card">
+          <p class="section-label">Answer</p>
+          <div id="answer" class="answer-empty">Submit a question to see the response.</div>
+        </article>
+
+        <article class="result-card">
+          <div class="result-head">
+            <p class="section-label">Matched products</p>
+            <span id="source-count" class="count-pill">0</span>
+          </div>
+          <div id="sources" class="sources-empty">No product matches yet.</div>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
